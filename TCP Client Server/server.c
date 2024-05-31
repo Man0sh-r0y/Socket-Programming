@@ -19,6 +19,13 @@ int main() {
     // You can choose any port number except the reserved port number (Like `port 80` is for HTTP etc.)
 
     int server_socket, client_socket;
+    // This `server_socket` integer variable will hold the file descriptor for the server's listening socket.
+    // Listening socket means: The server socket listens for incoming connections. A server creates a socket, binds the socket to an IP address and port number, and then listens for incoming connections
+    // A file descriptor is an unsigned integer used by a process to identify an open file.
+    // socket file descriptor is a unique integer identifier that the operating system assigns to a socket when it is created. 
+    // This identifier is used by the program to reference the socket in subsequent network communication operations.
+    //  The file descriptor is passed to other socket functions like bind, listen, accept, connect, send, and recv to perform various network operations.
+    // Same as This `client_socket` integer variable will hold the file descriptor for the connected client socket.
 
     struct sockaddr_in server_address, client_address; 
     // This sockaddr_in structure is defined in the header file <arpa/inet.h> 
@@ -31,8 +38,6 @@ int main() {
     char buffer[1024]; 
     // this char array of size 1024 is used to store data received from or to be sent to the client. 
     //It acts as a temporary storage for messages exchanged between the server and the client.
-
-    int n;
 
     server_socket = socket(AF_INET, SOCK_STREAM, 0); // creates a new socket for network communication.
     // AF_INET: It is an address family that is used to designate the type of addresses that your socket can communicate with (in this case, Internet Protocol v4 addresses). 
@@ -54,7 +59,7 @@ int main() {
     server_address.sin_addr.s_addr = inet_addr(ip); // It sets the IP address for the server.
     // `inet_addr(ip)` converts the IP address in the ip string from the standard dot notation ("127.0.0.1") to a format suitable for the sin_addr.s_addr field of the `sockaddr_in` structure
 
-    n = bind(server_socket, (struct sockaddr*)&server_address, sizeof(server_address));
+    int n = bind(server_socket, (struct sockaddr*)&server_address, sizeof(server_address));
     // After the creation of the socket, the bind function binds the socket to the address and port number 
     // (struct sockaddr*)&server_address: It's a pointer to the sockaddr_in structure that contains the address to which the socket will be bound. 
     // It needs to be cast to a struct sockaddr* as the bind function expects this type.
@@ -82,28 +87,30 @@ int main() {
         addr_size = sizeof(client_address);
         client_socket = accept(server_socket, (struct sockaddr*)&client_address, &addr_size);
         // accept() waits for an incoming connection request and returns a new socket file descriptor for the connection.
+        // A file descriptor is an unsigned integer used by a process to identify an open file.
+        // socket file descriptor is a unique integer identifier that the operating system assigns to a socket when it is created. 
+        // This identifier is used by the program to reference the socket in subsequent network communication operations.
+        //  The file descriptor is passed to other socket functions like bind, listen, accept, connect, send, and recv to perform various network operations.
 
-        if(client_socket < 0) {
+        if(client_socket < 0) { // if accept() returns -1, then accept failed
             perror("accept failed");
             exit(1);
         } else {
             printf("\nConnection accepted from %s:%d\n", inet_ntoa(client_address.sin_addr), ntohs(client_address.sin_port));
 
-            bzero(buffer, 1024);
-            recv(client_socket, buffer, sizeof(buffer), 0);
+            bzero(buffer, 1024); // this bzero() clears the buffer to ensure it does not contain any leftover data.
+            recv(client_socket, buffer, sizeof(buffer), 0); // recv() reads data from the client_socket and stores the recieved data into the buffer and the parameter `0` defines no special behaviour
             printf("Client: %s\n", buffer);
 
-            bzero(buffer, 1024);
-            strcpy(buffer, "Hello from server");
-            send(client_socket, buffer, strlen(buffer), 0);
-            printf("Server: %s\n", buffer);
-            send(client_socket, buffer, strlen(buffer), 0);
+            bzero(buffer, 1024); // again clears the buffer
+            strcpy(buffer, "Hello from server"); // Response message is copied into buffer using strcpy.
+            send(client_socket, buffer, strlen(buffer), 0); // send() function send the data in the buffer to the client and the parameter `0` defines no special behavior
+            printf("Message sent to Client: %s\n", buffer);
 
-            close(client_socket);
+            close(client_socket); // It closes the client_socket that means it ends the connection with the client.
             printf("Connection closed from client\n");
         }
     }
-    
 
     return 0;
 }
