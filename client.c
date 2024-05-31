@@ -55,7 +55,7 @@ int main() {
     client_address.sin_addr.s_addr = inet_addr(ip); // It sets the IP address for the server.
     // `inet_addr(ip)` converts the IP address in the ip string from the standard dot notation ("127.0.0.1") to a format suitable for the sin_addr.s_addr field of the `sockaddr_in` structure
 
-    connect(client_socket, (struct sockaddr*)&client_address, sizeof(client_address));
+    connect(client_socket, (struct sockaddr*)&client_address, sizeof(client_address)); // establish connection with the server
 
     printf("Connected to the server\n");
 
