@@ -26,7 +26,7 @@
 * **Step 2**: Run the Program
 
   ```bash
-  ./udpServer 5566 # send the port number also
+  ./udpServer 5566 # send the port number through argument
   ./udpClient 5566 # run it in another terminal window
   ```
 
