@@ -66,7 +66,7 @@ int main() {
     
     bzero(buffer, 1024); // again clears the buffer
     recv(client_socket, buffer, sizeof(buffer), 0); // recv() reads data from the client_socket and stores the recieved data into the buffer and the parameter `0` defines no special behaviour
-    printf("Server says: %s\n", buffer);
+    printf("Message recieved from Server: %s\n", buffer);
     
     close(client_socket);
     printf("Connection closed !\n");

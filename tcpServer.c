@@ -101,7 +101,7 @@ int main() {
 
             bzero(buffer, 1024); // this bzero() clears the buffer to ensure it does not contain any leftover data.
             recv(client_socket, buffer, sizeof(buffer), 0); // recv() reads data from the client_socket and stores the recieved data into the buffer and the parameter `0` defines no special behaviour
-            printf("Client syas: %s\n", buffer);
+            printf("Message recieved from Client: %s\n", buffer);
 
             bzero(buffer, 1024); // again clears the buffer
             strcpy(buffer, "Hello from server"); // Response message is copied into buffer using strcpy.
