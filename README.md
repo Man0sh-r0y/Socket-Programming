@@ -70,3 +70,11 @@ Socket programming is a way to connect two nodes on a network to communicate wit
 | Streaming od Data        | Read as a Byte Stream                             | Sent and read individually                             |
 | Error Checking           | Error Checking and Recovery                       | Simply error checking, no error recovery               |
 | Acknowledgement          | Acknowledgement segments                          | No acknowledgment                                      |
+
+## TCP Client Server Program Result
+
+![tcp-client-server-program-result](./assets/TCP_Client_Server_OutPut.png)
+
+## UDP Client Server Program Result
+
+![udp-client-server-program](./assets/UDP_Client_Server_OutPut.png)
