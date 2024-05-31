@@ -56,10 +56,10 @@ int main() {
     printf("Server Socket: %d\n", server_socket);
 
     if(server_socket < 0) { // if socket() returns -1, then socket creation failed
-        perror("socket failed"); // it prints an error message
+        perror("Socket creation failed"); // it prints an error message
         exit(1); // terminate the program with a non-zero status which indicates an error
     } else {
-        printf("TCP Socket created successfully\n"); // socket creation successful
+        printf("TCP Socket created successfully !\n"); // socket creation successful
         // A TCP socket is a software concept that allows applications to connect to a Transmission Control Protocol/Internet Protocol (TCP/IP) network. 
     }
 
@@ -78,7 +78,7 @@ int main() {
     if(n < 0) { // if bind() returns -1, then bind failed
         perror("bind failed");
         exit(1);
-    } else { // bind succesfull
+    } else { // bind successfull
         printf("Socket binded successfully to IP: %s and Port: %d\n", ip, port);
     }
 

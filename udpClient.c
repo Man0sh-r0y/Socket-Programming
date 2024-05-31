@@ -8,36 +8,76 @@
 
 int main(int argc, char **argv) // Main function with command line arguments
 {
-    // Check if the correct number of arguments is provided
-    if (argc != 2)
+    // through command line argument I will get the server's PORT number where I've to send data
+    if (argc != 2) // Check if the correct number of arguments is provided
     {
         printf("Usage: %s <port>\n", argv[0]); // Print usage message
+        printf("Please provide a port number for the server through command line argument.\n");
         exit(0); // Exit the program if the number of arguments is incorrect
     }
 
-    char *ip = "127.0.0.1"; // IP address to bind the server to (localhost)
+    // argc => the number of arguments
+    // argv => the array of arguments
+    // When we run the program, we write ./udpServer 5566 in the terminal
+    // So here argc = 2 and argv[0] = ./udpServer and argv[1] = 5566
+    // If we run the program, we write ./udpServer in the terminal
+    // So here argc = 1 and argv[0] = ./udpServer
+
+    char *ip = "127.0.0.1";   // the IP address of the server
     int port = atoi(argv[1]); // Convert the port number from a string to an integer
 
     int sockfd; // Socket file descriptor
-    struct sockaddr_in addr; // Structure to hold the address information
-    char buffer[1024]; // Buffer to hold data
-    socklen_t addr_size; // Variable to hold the size of the address
+    // A file descriptor is an unsigned integer used by a process to identify an open file.
+    // socket file descriptor is a unique integer identifier that the operating system assigns to a socket when it is created.
+    // This identifier is used by the program to reference the socket in subsequent network communication operations.
+    //  The file descriptor is passed to other socket functions like bind, sendto, and recvfrom to perform various network operations.
+
+    struct sockaddr_in client_address;
+    // This sockaddr_in structure is defined in the header file <netinet/in.h>
+    // And I've defined the structure variable client_addressess
+
+    char buffer[1024];   // Buffer to hold message data received from or to be sent to the udp client
+    socklen_t addr_size; // Variable to hold the size of the address of the socket
 
     sockfd = socket(AF_INET, SOCK_DGRAM, 0); // Create a UDP socket
-    memset(&addr, '\0', sizeof(addr)); // Clear the address structure
-    addr.sin_family = AF_INET; 
-    addr.sin_port = htons(port); 
-    addr.sin_addr.s_addr = inet_addr(ip); 
+    // AF_INET refers to the IPv4 address family, which is used for IPv4 Internet protocols
+    // SOCK_DGRAM indicates that the socket is of type datagram, which is used for UDP (User Datagram Protocol).
+    // The value 0 indicates that the system should automatically select the appropriate protocol based on the specified domain and type.
+    // For AF_INET and SOCK_DGRAM, this will be the UDP protocol.
+
+    if (sockfd < 0) // Check if the socket was created successfully. If socket() returns -1, then socket creation failed
+    {
+        perror("Socket creation failed\n"); // Print an error message if socket creation failed
+        exit(1);                          // terminate the program with a non-zero status which indicates an error
+    }
+    else
+    {
+        printf("UDP Socket created successfully !\n"); // Socket creation successful
+        // A UDP socket enables simple IP communication using the User Datagram Protocol (UDP).
+        // UDP is a connectionless protocol that runs on top of the Internet Protocol (IP)
+    }
+
+    memset(&client_address, '\0', sizeof(client_address)); // memset is used to fill a block of memory with a specific value and '\0' means NULL character
+    client_address.sin_family = AF_INET; // It sets the address family to AF_INET, which is used for IPv4 addresses.
+    client_address.sin_port = htons(port); // It sets the port number for the socket. And htons(port) converts the port number from host byte order to network byte order (big-endian). htons stands for "host to network short"
+    client_address.sin_addr.s_addr = inet_addr(ip); // It sets the IP address for the server.
+    // `inet_addr(ip)` converts the IP address in the ip string from the standard dot notation ("127.0.0.1") to a format suitable for the sin_addr.s_addr field of the `sockaddr_in` structure
 
     bzero(buffer, 1024); // Clear the buffer
-    strcpy(buffer, "Hello, World!"); // Copy the message into the buffer
-    sendto(sockfd, buffer, 1024, 0, (struct sockaddr *)&addr, sizeof(addr)); // Send the message to the server
-    printf("[+]Data send: %s\n", buffer); // Print the sent message
+
+    // Type message through terminal and sends it to the Client
+    printf("\nEnter message to send to server: ");
+    fgets(buffer, sizeof(buffer), stdin);
+    // The fgets function is used to read a line of text from a specified input stream,
+    // which in this case is stdin (the standard input, typically the terminal).
+
+    sendto(sockfd, buffer, 1024, 0, (struct sockaddr *)&client_address, sizeof(client_address)); // Send the message to the server
+    printf("\nMessage sent to Server: %s\n", buffer); // Print the sent message
 
     bzero(buffer, 1024); // Clear the buffer again
-    addr_size = sizeof(addr); // Set the size of the address structure
-    recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&addr, &addr_size); // Receive data from the server
-    printf("[+]Data recv: %s\n", buffer); // Print the received data
+    addr_size = sizeof(client_address); // Set the size of the address structure
+    recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&client_address, &addr_size); // Receive data from the server
+    printf("Message recieved from server: %s\n", buffer); // Print the received data
 
     return 0;
 }
