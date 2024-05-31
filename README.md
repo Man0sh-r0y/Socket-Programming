@@ -46,3 +46,7 @@ Socket programming is a way to connect two nodes on a network to communicate wit
 * Upon acceptance, you get *another* socket for the established session so that the server can go back and listen on the original socket for more incoming connections.
 * A socket allows an application to "plug in" to the network and communicate with other applications that are also plugged in to the same network.
 * Information written to the socket by an application on one machine can be read by an application on a different machine, and vice versa.
+
+## TCP Client Server Diagram
+
+![tcp-client-server](./assets/tcp_server_client.png)
