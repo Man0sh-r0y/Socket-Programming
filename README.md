@@ -10,8 +10,8 @@ A Client and Server Program using TCP (Transmission Control Protocol) ensures re
 
 * **Step 1**: Complie The Program
   ```bash
-  gcc tcpServer.c -o tcpServer 
-  gcc tcpClient.c -o tcpClient 
+  gcc tcpServer.c -o tcpServer # after compiling tcpServer.c, It instructs the compiler to output the compiled executable with the name tcpServer.
+  gcc tcpClient.c -o tcpClient # after compiling tcpClient.c, It instructs the compiler to output the compiled executable with the name tcpClient.
   ```
 * **Step 2**: Run the Program
   ```bash
