@@ -50,7 +50,8 @@ int main() {
         perror("socket failed"); // it prints an error message
         exit(1); // terminate the program with a non-zero status which indicates an error
     } else {
-        printf("TCP Server Socket created successfully\n"); // socket creation successful
+        printf("TCP Socket created successfully\n"); // socket creation successful
+        // A TCP socket is a software concept that allows applications to connect to a Transmission Control Protocol/Internet Protocol (TCP/IP) network. 
     }
 
     memset(&server_address, '\0', sizeof(server_address)); // memset is used to fill a block of memory with a specific value and '\0' means NULL character
