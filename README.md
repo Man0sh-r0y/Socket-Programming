@@ -51,6 +51,6 @@ Socket programming is a way to connect two nodes on a network to communicate wit
 
 ![tcp-client-server](./assets/tcp_server_client.png)
 
-## UDP Client Server Program
+## UDP Client Server Diagram
 
 ![udp-client-server](./assets/udp_server-client.png)
