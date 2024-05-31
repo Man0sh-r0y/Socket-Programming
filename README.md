@@ -60,3 +60,13 @@ Socket programming is a way to connect two nodes on a network to communicate wit
 ![udp-client-server](./assets/udp_server-client.png)
 
 ## TCP vs UDP
+
+| Basis                    | TCP                                               | UDP                                                    |
+| ------------------------ | ------------------------------------------------- | ------------------------------------------------------ |
+| Connection               | Connection Oriented                               | connectionless                                         |
+| Usage                    | High reliability, critical-less transmission time | fast, efficient, small queries, huge number of clients |
+| Ordering of data packets | rearranges packets in order                       | No inherent order                                      |
+| Reliability              | Yes                                               | No                                                     |
+| Streaming od Data        | Read as a Byte Stream                             | Sent and read individually                             |
+| Error Checking           | Error Checking and Recovery                       | Simply error checking, no error recovery               |
+| Acknowledgement          | Acknowledgement segments                          | No acknowledgment                                      |
