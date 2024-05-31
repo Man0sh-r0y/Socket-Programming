@@ -26,8 +26,8 @@
 * **Step 2**: Run the Program
 
   ```bash
-  ./udpServer
-  ./udpClient # run it in another terminal window
+  ./udpServer 5566 # send the port number also
+  ./udpClient 5566 # run it in another terminal window
   ```
 
 ## What is Socket Programming?
