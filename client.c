@@ -36,8 +36,6 @@ int main() {
     // this char array of size 1024 is used to store data received from or to be sent to the client. 
     // It acts as a temporary storage for messages exchanged between the server and the client.
 
-    int n;
-
     client_socket = socket(AF_INET, SOCK_STREAM, 0); // creates a new socket for network communication.
     // AF_INET: It is an address family that is used to designate the type of addresses that your socket can communicate with (in this case, Internet Protocol v4 addresses). 
     // SOCK_STREAM: It specifies the socket type. `SOCK_STREAM` indicates that this is a TCP socket, which provides reliable, two-way, connection-based byte streams.
