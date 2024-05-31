@@ -2,7 +2,7 @@
 
 A Client and Server Program using TCP (Transmission Control Protocol) ensures reliable, connection-oriented communication. The server listens on a specific port and waits for client requests, establishing a connection to exchange data with guaranteed delivery. Conversely, a UDP (User Datagram Protocol) based program offers connectionless, faster communication, where the server receives and processes datagrams from clients without establishing a dedicated connection, making it suitable for applications where speed is prioritized over reliability. Both protocols serve distinct needs based on the application's requirements for data integrity and transmission speed.
 
-![TCP-UDP-Data-Communication](./assets/TCP and UDP data sending.png)
+![TCP-UDP-Data-Communication](./assets/TCP_and_UDP_data_sending.png)
 
 ## Installation
 
