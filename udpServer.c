@@ -6,6 +6,14 @@
 #include <netinet/in.h> // Library for Internet address family
 #include <arpa/inet.h>  // Library for functions like inet_addr and htons
 
+
+// STEPS to FOLLOW:
+// 1. Set Up IP Address and PORT number of the Server
+// 2. Create Socket
+// 3. Bind the Socket
+// 4. Message recieve and send
+
+
 int main(int argc, char **argv) // Main function with command line arguments
 {
     // through command line argument I will get the PORT number of the UDP Server

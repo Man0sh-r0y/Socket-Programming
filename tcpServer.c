@@ -13,6 +13,7 @@
 // 4. Listen for the incoming connections
 // 5. Accept the Connection
 // 6. Message recieve and send
+// 7. Close the Connection
 
 
 int main() {

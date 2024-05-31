@@ -11,6 +11,7 @@
 // 2. Create Socket
 // 3. Connect the Socket (Establish Connection with Server)
 // 4. Message recieve and send
+// 5. Close the Connection
 
 
 int main() {
