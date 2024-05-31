@@ -1,5 +1,36 @@
 # Client and Server Program using both TCP and UDP
 
+## Installation
+
+### TCP Client Server Program
+
+* **Step 1**: Complie The Program
+  ```bash
+  gcc tcpServer.c -o tcpServer 
+  gcc tcpClient.c -o tcpClient 
+  ```
+* **Step 2**: Run the Program
+  ```bash
+  ./tcpServer
+  ./tcpClient # run it in another terminal window
+  ```
+
+### UDP Client Server Program
+
+* **Step 1**: Complie The Program
+
+  ```bash
+  gcc udpServer.c -o udpServer 
+  gcc udpClient.c -o udpClient 
+  ```
+* **Step 2**: Run the Program
+
+  ```bash
+  ./udpServer
+  ./udpClient # run it in another terminal window
+  ```
+
+
 ## What is Socket Programming?
 
 Socket programming is a way to connect two nodes on a network to communicate with each other. It uses socket APIs to establish communication links between local and remote processes. Sockets are a combination of an IP address and software port number that allows communication between multiple processes.
