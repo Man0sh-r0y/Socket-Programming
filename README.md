@@ -61,7 +61,4 @@ Socket programming is a way to connect two nodes on a network to communicate wit
 
 ## TCP vs UDP
 
-| Basis | Transmission Control Protocol (TCP) | User Datagram Protocol (UDP) |
-| ----- | ----------------------------------- | ---------------------------- |
-|       |                                     |                              |
-|       |                                     |                              |
+![tcp-vs-udp](./assets/TCP-vs-UDP.png)
