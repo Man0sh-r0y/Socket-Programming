@@ -6,6 +6,15 @@
 #include<arpa/inet.h> // Provides functions and definitions for manipulating IP addresses and port numbers (struct sockaddr_in, inet_addr, htons, etc.).
 
 
+// STEPS to FOLLOW:
+// 1. Set Up IP Address and PORT number of the Server
+// 2. Create Socket
+// 3. Bind the Socket
+// 4. Listen for the incoming connections
+// 5. Accept the Connection
+// 6. Message recieve and send
+
+
 int main() {
 
     char *ip = "127.0.0.1"; // the ip address of the server

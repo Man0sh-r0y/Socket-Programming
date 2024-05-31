@@ -5,6 +5,14 @@
 #include<unistd.h> // Provides access to the close function and other system calls.
 #include<arpa/inet.h> // Provides functions and definitions for manipulating IP addresses and port numbers (struct sockaddr_in, inet_addr, htons, etc.).
 
+
+// STEPS to FOLLOW:
+// 1. Set Up IP Address and PORT number of the Server
+// 2. Create Socket
+// 3. Connect the Socket (Establish Connection with Server)
+// 4. Message recieve and send
+
+
 int main() {
 
     char *ip = "127.0.0.1"; // the ip address of the server
