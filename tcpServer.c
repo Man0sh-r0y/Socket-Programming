@@ -97,19 +97,26 @@ int main() {
             perror("accept failed");
             exit(1);
         } else {
-            printf("\nConnection accepted from %s:%d\n", inet_ntoa(client_address.sin_addr), ntohs(client_address.sin_port));
+            printf("------------------------------------------------\n");
+            printf("\nConnection accepted from IP: %s and PORT: %d\n", inet_ntoa(client_address.sin_addr), ntohs(client_address.sin_port));
 
             bzero(buffer, 1024); // this bzero() clears the buffer to ensure it does not contain any leftover data.
             recv(client_socket, buffer, sizeof(buffer), 0); // recv() reads data from the client_socket and stores the recieved data into the buffer and the parameter `0` defines no special behaviour
-            printf("Message recieved from Client: %s\n", buffer);
+            printf("\nMessage recieved from Client: %s", buffer);
 
             bzero(buffer, 1024); // again clears the buffer
-            strcpy(buffer, "Hello from server"); // Response message is copied into buffer using strcpy.
+
+            // Type message through terminal and sends it to the Client
+            printf("Enter message to send to client: ");
+            fgets(buffer, sizeof(buffer), stdin);
+            // The fgets function is used to read a line of text from a specified input stream, 
+            // which in this case is stdin (the standard input, typically the terminal).
+
             send(client_socket, buffer, strlen(buffer), 0); // send() function send the data in the buffer to the client and the parameter `0` defines no special behavior
-            printf("Message sent to Client: %s\n", buffer);
+            printf("Message sent !\n");
 
             close(client_socket); // It closes the client_socket that means it ends the connection with the client.
-            printf("Connection closed !\n");
+            printf("\nConnection closed !\n");
         }
     }
 

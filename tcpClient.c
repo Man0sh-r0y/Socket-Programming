@@ -13,7 +13,7 @@ int main() {
     // This address is commonly used for local testing and development because it does not require a network connection. 
     // Any data sent to `127.0.0.1` is looped back to the local machine, allowing developers to test network applications without needing an external network.
 
-    int port = 5566; // the port number of the server
+    int port = 5566; // the port number of the server (where I have to send data)
     // A port number is a 16-bit number (ranging from 0 to 65535) to distinguish different services or applications running on the same machine. 
     // You can choose any port number except the reserved port number (Like `port 80` is for HTTP etc.)
 
@@ -60,9 +60,16 @@ int main() {
     printf("Connected to the server\n");
 
     bzero(buffer, 1024); // this bzero() clears the buffer to ensure it does not contain any leftover data.
-    strcpy(buffer, "Hello from client"); // Response message is copied into buffer using strcpy.
-    printf("Message sent to Server: %s\n", buffer);
+
+    // Type message through terminal and sends it to the Server
+    printf("\nEnter message to send to Server: ");
+    fgets(buffer, sizeof(buffer), stdin);
+    // The fgets function is used to read a line of text from a specified input stream, 
+    // which in this case is stdin (the standard input, typically the terminal).
+
     send(client_socket, buffer, sizeof(buffer), 0); // send() function send the data in the buffer to the server and the parameter `0` defines no special behavior
+
+    printf("Message sent !\n");
     
     bzero(buffer, 1024); // again clears the buffer
     recv(client_socket, buffer, sizeof(buffer), 0); // recv() reads data from the client_socket and stores the recieved data into the buffer and the parameter `0` defines no special behaviour
