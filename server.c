@@ -37,7 +37,7 @@ int main() {
 
     char buffer[1024]; 
     // this char array of size 1024 is used to store data received from or to be sent to the client. 
-    //It acts as a temporary storage for messages exchanged between the server and the client.
+    // It acts as a temporary storage for messages exchanged between the server and the client.
 
     server_socket = socket(AF_INET, SOCK_STREAM, 0); // creates a new socket for network communication.
     // AF_INET: It is an address family that is used to designate the type of addresses that your socket can communicate with (in this case, Internet Protocol v4 addresses). 
@@ -109,7 +109,7 @@ int main() {
             printf("Message sent to Client: %s\n", buffer);
 
             close(client_socket); // It closes the client_socket that means it ends the connection with the client.
-            printf("Connection closed from client\n");
+            printf("Connection closed !\n");
         }
     }
 
